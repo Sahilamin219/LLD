@@ -1,0 +1,55 @@
+Build the object-oriented design for a two-player Connect Four game. 
+Players take turns dropping discs into a 7-column, 6-row board. 
+The first to align four of their own discs vertically, horizontally, or diagonally wins.
+
+
+Requirement : 
+    1. Two players.  Play alternatively. Board size if fixed 7 * 6
+    2. When place on a col, it move to lowest available row.
+    3. The game ends when:
+        - A player gets four discs in a row (vertical, horizontal, or diagonal). They win.
+        - The board is full. It's a draw.
+    
+
+   4. Invalid moves should be rejected clearly:
+    - Dropping in a full column.
+    - Moving out of turn.
+    - Moving after the game is over.
+
+    Out of scope: 
+        - UI support
+        - Concurrent games
+        - Move history
+        - Undo
+        - Board size configuration
+    
+    One game at a time or multiple concurrent games
+
+
+
+entity:   Game, Player, Board, state, currPlayer, 
+
+
+
+
+
+
+Game {
+
+    - board : Board[7][6]
+    - player1 : Player
+    - player2 : Player
+    - gameState: GameState {In Porgress, WIN, DRAW}
+    - CurrentPlayer: Player
+    - winner : Player?
+
+
+    + Board(Player1, Player2)
+    + printBoard() -> void
+    + getCurrentPlayer() -> currPlayer
+    + makeMove(player, column) : Boolean
+    + getWinner() : Player
+    + getGameState() : GameState
+
+
+}
