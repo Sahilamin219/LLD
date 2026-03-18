@@ -60,7 +60,9 @@ class Elevator {
     }
 }
 
+
 class ElevatorController {
+    private static ElevatorController instance;
     List<Elevator> elevators;
     int numFloors;
 
@@ -71,6 +73,13 @@ class ElevatorController {
         for (int i = 0; i < numElevators; i++) {
             elevators.add(new Elevator(i));
         }
+    }
+
+    public static ElevatorController getInstance(int numElevators, int numFloors) {
+        if (instance == null) {
+            instance = new ElevatorController(numElevators, numFloors);
+        }
+        return instance;
     }
     
     public void step() {
@@ -190,7 +199,7 @@ class ElevatorController {
 
 public class main {
     public static void main(String[] args) {
-        ElevatorController controller = new ElevatorController(3, 10);
+        ElevatorController controller = ElevatorController.getInstance(3, 10);
         
         // Example requests
         Elevator e1 = controller.dispatchElevator("UP", 0);
